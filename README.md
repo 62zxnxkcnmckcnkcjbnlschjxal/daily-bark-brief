@@ -34,7 +34,7 @@
 ## 📱 推送效果示例（Bark 手机弹窗预览）
 
 <p align="center">
-  <img src="assets/demo-screenshot.png" alt="晨间简报推送预览" width="300">
+  <img src="assets/截屏 2026-08-22 下午4.39.25.png" alt="晨间简报推送预览" width="300">
 </p>
 
 ```text
