@@ -1,17 +1,10 @@
 # Daily Bark Brief 🌅
-
-A GitHub Actions workflow that sends a daily morning briefing to your Bark app, including weather, UV index, sunrise/sunset times, lunar calendar information, and birthday countdowns.
-
+一个 GitHub Actions 工作流，每天向你的 Bark 应用发送晨间简报，内容包括天气、紫外线指数、日出日落时间、农历信息以及生日倒计时。
 ## Badges 🏅
-
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-
 ## Description 📝
-
-This project automates the delivery of a personalized daily briefing directly to your mobile device via the Bark notification service. It aggregates useful daily information such as current weather conditions, UV index, sunrise and sunset times, traditional Chinese lunar calendar details (including auspicious and inauspicious activities), and a countdown to your birthday. All configuration is managed through environment variables, ensuring privacy and ease of use, especially in public repositories.
-
+本项目通过 Bark 通知服务，自动将个性化的每日简报直接推送到你的移动设备。它聚合了各类实用的日常信息，包括当前天气状况、紫外线指数、日出日落时间、中国传统农历详情（含宜忌事项），以及距离你下一个生日的倒计时。所有配置均通过环境变量管理，确保隐私安全且易于使用，尤其适合在公开仓库中部署。
 ## Table of Contents 📜
-
 - [Features](#features-🌟)
 - [Tech Stack](#tech-stack-💻)
 - [Installation](#installation-🚀)
@@ -20,56 +13,41 @@ This project automates the delivery of a personalized daily briefing directly to
 - [Contributing](#contributing-🤝)
 - [License](#license-⚖️)
 - [Footer](#footer-✨)
-
 ## Features 🌟
-
-- 🌦️ **Daily Weather Updates:** Provides current weather information including temperature, wind speed, and precipitation probability.
-- ☀ **UV Index Alerts:** Notifies you about the UV index level and provides recommendations for sun protection.
-- 🌅 **Sunrise & Sunset Times:** Keeps you informed about the daily sunrise and sunset times.
-- 🎂 **Birthday Countdown:** Tracks the number of days remaining until your next birthday.
-- 📜 **Lunar Calendar Integration:** Displays the traditional Chinese lunar calendar, including auspicious (`宜`) and inauspicious (`忌`) activities for the day.
-- 📱 **Bark Push Notifications:** Delivers all information seamlessly to your Bark app.
-- 🔒 **Environment Variable Configuration:** All sensitive information and settings are managed via environment variables, preventing hardcoding.
-
+- 🌦️ **Daily Weather Updates:** 提供当前天气信息，包括温度、风速和降水概率。
+- ☀ **UV Index Alerts:** 告知你当日紫外线指数等级，并给出防晒建议。
+- 🌅 **Sunrise & Sunset Times:** 让你了解每日日出和日落的具体时间。
+- 🎂 **Birthday Countdown:** 追踪距离你下一个生日还剩多少天。
+- 📜 **Lunar Calendar Integration:** 显示中国传统农历，包括当日的宜（`宜`）和忌（`忌`）事项。
+- 📱 **Bark Push Notifications:** 将所有信息无缝推送到你的 Bark 应用。
+- 🔒 **Environment Variable Configuration:** 所有敏感信息和设置均通过环境变量管理，避免硬编码。
 ## Tech Stack 💻
-
 - **Language:** Python 🐍
 - **Frameworks/Libraries:**
-  - `requests`: For making HTTP requests to weather APIs and Bark.
-  - `cnlunar`: For calculating and retrieving Chinese lunar calendar information.
-  - `zoneinfo`: For handling timezone information.
-
+  - `requests`: 用于向天气 API 和 Bark 发送 HTTP 请求。
+  - `cnlunar`: 用于计算和获取中国农历信息。
+  - `zoneinfo`: 用于处理时区信息。
 ## Installation 🚀
-
-This project is designed to be run as a GitHub Action. The primary configuration is done through environment variables.
-
-1.  **Fork the Repository:** Fork this repository to your GitHub account.
-2.  **Set Up Environment Variables:** In your forked repository, navigate to `Settings` > `Secrets and variables` > `Actions` and add the following repository secrets:
-    *   `BARK_KEY`: Your unique Bark push key.
-    *   `BARK_HOST`: (Optional) Your Bark server address if not using the default `https://api.day.app`.
-    *   `WEATHER_LAT`: The latitude of your desired location (e.g., `39.9042` for Beijing).
-    *   `WEATHER_LON`: The longitude of your desired location (e.g., `116.4074` for Beijing).
-    *   `BIRTH_MONTH`: Your birth month (e.g., `7` for July).
-    *   `BIRTH_DAY`: Your birth day (e.g., `10`).
-
-3.  **Configure GitHub Actions:** The workflow is already set up in `.github/workflows/main.yml` (assuming a workflow file exists or will be created). You might need to adjust the `schedule` to your preferred timing.
-
+本项目设计为以 GitHub Action 的方式运行，主要配置通过环境变量完成。
+1.  **Fork the Repository:** 将本仓库 Fork 到你的 GitHub 账户。
+2.  **Set Up Environment Variables:** 在你 Fork 的仓库中，进入 `Settings` > `Secrets and variables` > `Actions`，添加以下仓库密钥：
+    *   `BARK_KEY`: 你唯一的 Bark 推送密钥。
+    *   `BARK_HOST`: （可选）如果你不使用默认的 `https://api.day.app`，可填写你的 Bark 服务器地址。
+    *   `WEATHER_LAT`: 目标位置的纬度（例如北京为 `39.9042`）。
+    *   `WEATHER_LON`: 目标位置的经度（例如北京为 `116.4074`）。
+    *   `BIRTH_MONTH`: 你的出生月份（例如 7 月填 `7`）。
+    *   `BIRTH_DAY`: 你的出生日期（例如 `10`）。
+3.  **Configure GitHub Actions:** 工作流已在 `.github/workflows/main.yml` 中设置好（假设工作流文件已存在或即将创建）。你可能需要根据自己的偏好调整 `schedule` 定时时间。
 ## Usage 💡
-
-This script is intended to be run automatically via GitHub Actions on a daily schedule. Once configured with your environment variables, it will fetch the data and send a notification to your Bark app.
-
+本脚本旨在通过 GitHub Actions 按每日计划自动运行。配置好环境变量后，它将自动获取数据并向你的 Bark 应用发送通知。
 ### Example Workflow Trigger (GitHub Actions)
-
-To run the script daily at 8:00 AM China Standard Time (CST), you can add a workflow file (e.g., `.github/workflows/daily_brief.yml`) with the following content:
-
+要在每天中国标准时间（CST）早上 8:00 运行脚本，你可以添加一个工作流文件（例如 `.github/workflows/daily_brief.yml`），内容如下：
 ```yaml
 name: Daily Briefing
-
 on:
   schedule:
     - cron: '0 0 * * *' # Runs at 00:00 UTC, adjust to your timezone
   workflow_dispatch: # Allows manual triggering
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -91,17 +69,12 @@ jobs:
           BIRTH_DAY: ${{ secrets.BIRTH_DAY }}
         run: python main.py
 ```
-
-**Note:** The `cron` expression `'0 0 * * *'` runs at midnight UTC. Adjust this to your local time. For example, to run at 8 AM CST (UTC+8), you would use `'24 * * * *'` (which is 8 AM UTC+8 on the *next* day from UTC perspective, or adjust based on your specific needs). A more direct way for 8 AM CST would be `'0 0 * * *'` if your runner's timezone is considered CST or adjust the UTC offset accordingly.
-
+**Note:** `cron` 表达式 `'0 0 * * *'` 表示在 UTC 时间午夜运行。请根据你所在的时区进行调整。例如，要在 CST（UTC+8）早上 8 点运行，你可以使用 `'24 * * * *'`（从 UTC 角度看这是第二天的 UTC+8 早上 8 点，或根据你的具体需求调整）。如果运行器的时区被视为 CST，更直接的方式是使用 `'0 0 * * *'`，或者根据 UTC 偏移量相应调整。
 ### How to use
-
-1.  **Configure Environment Variables:** Ensure all necessary environment variables (`BARK_KEY`, `WEATHER_LAT`, `WEATHER_LON`, `BIRTH_MONTH`, `BIRTH_DAY`) are set in your GitHub repository secrets.
-2.  **Trigger the Action:** The workflow will run automatically based on the schedule defined in your `.yml` file. You can also manually trigger it from the Actions tab in your GitHub repository.
-3.  **Receive Notifications:** Check your Bark app for the daily briefing.
-
+1.  **Configure Environment Variables:** 确保所有必要的环境变量（`BARK_KEY`、`WEATHER_LAT`、`WEATHER_LON`、`BIRTH_MONTH`、`BIRTH_DAY`）都已在你的 GitHub 仓库密钥中设置。
+2.  **Trigger the Action:** 工作流将根据你 `.yml` 文件中定义的计划自动运行。你也可以在 GitHub 仓库的 Actions 标签页中手动触发。
+3.  **Receive Notifications:** 在你的 Bark 应用中查看每日简报。
 ## Project Structure 📁
-
 ```
 daily-bark-brief/
 ├── .github/
@@ -113,36 +86,22 @@ daily-bark-brief/
 ├── LICENSE                     # Project license file
 └── README.md                   # Project README file
 ```
-
 ## Contributing 🤝
-
-Contributions are welcome! Please feel free to:
-
+欢迎贡献！请随意：
 -   Fork the repository.
 -   Create a new branch (`git checkout -b feature/YourFeature`).
 -   Make your changes.
 -   Commit your changes (`git commit -am 'Add some feature'`)
 -   Push to the branch (`git push origin feature/YourFeature`)
 -   Open a Pull Request.
-
-Please ensure your code adheres to the project's style and includes tests if applicable.
-
+请确保你的代码符合项目的代码风格，并在适用时包含测试。
 ## License ⚖️
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+本项目采用 MIT 许可证 — 详见 [LICENSE](LICENSE) 文件。
 ## Footer ✨
-
 ---
-
 Made with ❤️ by [62zxnxkcnmckcnkcjbnlschjxal](https://github.com/62zxnxkcnmckcnkcjbnlschjxal)
-
 [Back to Top](#daily-bark-brief-🌅)
-
 [![Star us on GitHub](https://img.shields.io/github/stars/62zxnxkcnmckcnkcjbnlschjxal/daily-bark-brief?style=social)](https://github.com/62zxnxkcnmckcnkcjbnlschjxal/daily-bark-brief)
 [![Fork us on GitHub](https://img.shields.io/github/forks/62zxnxkcnmckcnkcjbnlschjxal/daily-bark-brief?style=social)](https://github.com/62zxnxkcnmckcnkcjbnlschjxal/daily-bark-brief)
-
-
-
 ---
 **<p align="center">Generated by [ReadmeCodeGen](https://www.readmecodegen.com/)</p>**
