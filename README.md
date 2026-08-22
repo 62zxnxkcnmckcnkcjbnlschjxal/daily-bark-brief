@@ -200,6 +200,7 @@ BIRTH_DAY = int(os.getenv("BIRTH_DAY", "10"))
 # ……后面代码不变
 push.yml文件内容保持不变，yml里面已经写好 secrets.xxx 注入逻辑，脚本运行的时候yml会把Secrets变成环境变量给到Python的os.getenv()读取。
 执行顺序：GitHub Secrets → yml注入环境变量 → Python脚本os.getenv()读取，没有则使用示例兜底。
+
 # 🤝 特别致谢
 ## 感谢豆包对本项目开发的大力支持 🤖
 <img height="48" src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zh-cn/ljhwZthlaukjlkulzlp/doubao_logo.png" alt="豆包">
